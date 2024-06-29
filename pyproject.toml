@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "asynccache"
-version = "0.1.0"
+name = "aiocache"
+version = "0.1.1"
 description = ""
 authors = ["IX <borntokill.ix@gmail.com>"]
 readme = "README.md"
