@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from aiocache import AsyncCache
+from asynciocache import AsyncCache
 from LogSettings import get_logger
 
 logger = get_logger('consolemode')
