@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "aiocache"
 version = "0.1.1"
-description = ""
+description = "The Simple library for corutine cache"
 authors = ["IX <borntokill.ix@gmail.com>"]
 readme = "README.md"
 
