@@ -1,20 +1,20 @@
 import asyncio
 import unittest
 
-from coroutincache import AsyncCache
+from coroutincache import asyncache
 from LogSettings import get_logger
 
 logger = get_logger('consolemode')
 
 
-@AsyncCache(ttl=10)
+@asyncache(ttl=10)
 async def long_api():
     logger.debug('Load from async API')
     await asyncio.sleep(3)
     return [{'namespace': 'A1'}, {'namespace': 'A2'}, {'namespace': 'A3'}]
 
 
-@AsyncCache(ttl=10)
+@asyncache(ttl=10)
 async def long_api_2():
     logger.debug('Load from async API')
     await asyncio.sleep(3)

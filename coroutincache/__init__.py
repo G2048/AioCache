@@ -1,3 +1,3 @@
-from .coroutincache import AsyncCache
+from .coroutincache import AsyncCache as asyncache
 
-__all__ = ['AsyncCache']
+__all__ = ['asyncache']
