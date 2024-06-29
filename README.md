@@ -6,7 +6,7 @@ It have been make for corutines what getting a large data volume for over extern
 
 ## Installation
 ```python
-pip install asyncache
+pip install asyniocache
 ```
 
 ## Simple usage:
