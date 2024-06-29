@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "aiocache"
-version = "0.1.1"
+name = "asyncache"
+version = "1.1.0"
 description = "The Simple library for corutine cache"
 authors = ["IX <borntokill.ix@gmail.com>"]
 readme = "README.md"
