@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "asynciocache"
+name = "coroutincache"
 version = "1.1.0"
 description = "The Simple library for corutine cache"
 authors = ["IX <borntokill.ix@gmail.com>"]
