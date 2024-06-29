@@ -13,7 +13,6 @@ class AsyncCache:
 
     def __init__(self, ttl):
         self.ttl = ttl
-        self.semaphore = threading.Semaphore(1)
         if type(self)._first_run:
             logger.info('First run...')
             check_ttl_thread = threading.Thread(target=self.__loop_check_ttl, daemon=True)
