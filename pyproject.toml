@@ -12,3 +12,6 @@ python = ">=3.5"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+homepage = "https://github.com/G2048/AioCache"
