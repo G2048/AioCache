@@ -1,9 +1,8 @@
+import logging
 import threading
 from time import sleep, time
 
-from LogSettings import get_logger
-
-logger = get_logger('asyncio')
+logger = logging.getLogger('asyncio')
 
 
 class AsyncCache:

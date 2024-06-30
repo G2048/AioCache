@@ -1,9 +1,11 @@
 [tool.poetry]
-name = "asynccache"
-version = "0.1.0"
-description = ""
+name = "coroutincache"
+version = "1.1.5"
+description = "The Simple library for corutine cache"
+license = "MIT"
 authors = ["IX <borntokill.ix@gmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/G2048/AioCache"
 
 [tool.poetry.dependencies]
 python = ">=3.5"
@@ -12,3 +14,4 @@ python = ">=3.5"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
