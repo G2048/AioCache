@@ -23,7 +23,7 @@ logger = get_logger('consolemode')
 app = FastAPI()
 
 
-@asynccache(ttl=20)
+@asyncache(ttl=20)
 async def load_from_api(params=None):
     await asyncio.sleep(3)
     logger.debug(f'LOAD FROM API')
