@@ -17,13 +17,13 @@ import asyncio
 from fastapi import FastAPI
 
 from LogSettings import get_logger
-from asyncache import AsyncCache
+from coroutincache import asyncache
 
 logger = get_logger('consolemode')
 app = FastAPI()
 
 
-@AsyncCache(ttl=20)
+@asynccache(ttl=20)
 async def load_from_api(params=None):
     await asyncio.sleep(3)
     logger.debug(f'LOAD FROM API')
