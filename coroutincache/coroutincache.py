@@ -6,10 +6,6 @@ from time import time
 logger = logging.getLogger('asyncio')
 
 
-def del_cache(key):
-    logger.debug(f'Remove cache: {key=}')
-
-
 class AsyncCache:
     _cache = {}
     _ttl = {}
