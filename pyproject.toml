@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "coroutincache"
-version = "1.1.5"
+version = "1.4.0"
 description = "The Simple library for corutine cache"
 license = "MIT"
 authors = ["IX <borntokill.ix@gmail.com>"]
