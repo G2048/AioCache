@@ -1,13 +1,12 @@
 import asyncio
 import logging
+from asyncio import exceptions
 from functools import wraps
 from time import time
 
+from coroutincache.exceptions import AsyncCacheException, AsyncCacheTimeoutException
+
 logger = logging.getLogger('asyncio')
-
-
-class AsyncCacheException(Exception):
-    pass
 
 
 class AsyncCache:
@@ -29,10 +28,11 @@ class AsyncCache:
         logger.info('Create cache...')
         key = f'{func.__name__}{args}{kwargs}'
         try:
-            type(self)._cache[key] = await func(*args, **kwargs)
-        except Exception as e:
-            logger.error('Error during create cache', exc_info=True)
-            raise AsyncCacheException(e)
+            res = await asyncio.wait_for(func(*args, **kwargs), self.ttl)
+            logger.info(f'Result: {res}')
+            type(self)._cache[key] = res
+        except exceptions.TimeoutError:
+            raise AsyncCacheTimeoutException()
         type(self)._ttl[key] = time()
 
     def _callback(self, func, *args, **kwargs):
