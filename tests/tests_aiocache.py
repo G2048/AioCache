@@ -3,6 +3,7 @@ import unittest
 
 from coroutincache import asyncache
 from LogSettings import get_logger
+from coroutincache.exceptions import AsyncCacheTimeoutException
 
 logger = get_logger('consolemode')
 
@@ -21,11 +22,18 @@ class Later:
         await asyncio.sleep(3)
 
 
-@asyncache(ttl=10)
-async def long_api():
+@asyncache(ttl=5)
+async def long_api(sleep=3):
     logger.debug('Load from async API')
-    await asyncio.sleep(3)
+    await asyncio.sleep(sleep)
     return [{'namespace': 'A1'}, {'namespace': 'A2'}, {'namespace': 'A3'}]
+
+
+@asyncache(ttl=5)
+async def long_api_with_exception(sleep=3):
+    await asyncio.sleep(sleep)
+    items = []
+    items[0]
 
 
 @asyncache(ttl=5)
@@ -95,6 +103,29 @@ class AiocacheTestCase(unittest.IsolatedAsyncioTestCase):
         print(f'Result: {result}')
         result = await long_api_2()
         print(f'Result: {result}')
+
+
+class AiocacheExceptionsTestCase(unittest.IsolatedAsyncioTestCase):
+
+    @unittest.expectedFailure
+    async def test_negative_ttl_lesser_than_api_work(self):
+        await long_api(20)
+
+    @unittest.expectedFailure
+    async def test_negative_raise_exeption(self):
+        await long_api_with_exception(1)
+
+    async def test_ttl_lesser_than_api_work(self):
+        try:
+            await long_api(20)
+        except AsyncCacheTimeoutException:
+            self.assertTrue(True)
+
+    async def test_raise_exception(self):
+        try:
+            await long_api_with_exception(1)
+        except IndexError:
+            self.assertTrue(True)
 
 
 if __name__ == '__main__':
