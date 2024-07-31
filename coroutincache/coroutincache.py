@@ -6,6 +6,10 @@ from time import time
 logger = logging.getLogger('asyncio')
 
 
+class AsyncCacheException(Exception):
+    pass
+
+
 class AsyncCache:
     _ttl = {}
     _cache = {}
@@ -24,7 +28,11 @@ class AsyncCache:
     async def _create_cache(self, func, *args, **kwargs):
         logger.info('Create cache...')
         key = f'{func.__name__}{args}{kwargs}'
-        type(self)._cache[key] = await func(*args, **kwargs)
+        try:
+            type(self)._cache[key] = await func(*args, **kwargs)
+        except Exception as e:
+            logger.error('Error during create cache', exc_info=True)
+            raise AsyncCacheException(e)
         type(self)._ttl[key] = time()
 
     def _callback(self, func, *args, **kwargs):
